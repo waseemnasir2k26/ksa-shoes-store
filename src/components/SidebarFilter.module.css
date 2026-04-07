@@ -1,0 +1,80 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.header {
+  font-family: var(--font-tajawal);
+  font-size: 1.5rem;
+  border-bottom: 2px solid var(--primary);
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.title {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.label {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.95rem;
+  cursor: pointer;
+  color: var(--text-muted);
+}
+
+.label:hover {
+  color: var(--primary);
+}
+
+.label input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--primary);
+  cursor: pointer;
+}
+
+.gridBtn {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5rem;
+}
+
+.sizeBtn {
+  border: 1px solid var(--border);
+  padding: 0.5rem 0;
+  text-align: center;
+  border-radius: var(--radius-sm);
+  background: white;
+  transition: var(--transition);
+}
+
+.sizeBtn:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.range {
+  width: 100%;
+  accent-color: var(--primary);
+}
+
+.priceLabels {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.5rem;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
