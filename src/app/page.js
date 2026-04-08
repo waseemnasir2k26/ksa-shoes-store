@@ -1,16 +1,30 @@
+"use client";
 import Hero from "@/components/Hero";
 import ProductGrid from "@/components/ProductGrid";
+import MarqueeBanner from "@/components/MarqueeBanner";
+import CategoryCards from "@/components/CategoryCards";
+import TrustBadges from "@/components/TrustBadges";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function Home() {
+  const { t } = useLanguage();
+  
   return (
     <>
       <Hero />
-      <section style={{ padding: "5rem 0" }}>
+      <MarqueeBanner />
+
+      <section style={{ padding: "6rem 0 4rem" }}>
         <div className="container">
-          <h2 style={{ fontFamily: "var(--font-tajawal)", fontSize: "2.5rem", marginBottom: "3rem", textAlign: "center" }}>Featured Collections</h2>
-          <ProductGrid />
+          <div className="gold-divider"></div>
+          <h2 className="section-title">{t('featuredTitle')}</h2>
+          <p className="section-subtitle">{t('featuredDesc')}</p>
         </div>
+        <ProductGrid />
       </section>
+
+      <CategoryCards />
+      <TrustBadges />
     </>
   );
 }

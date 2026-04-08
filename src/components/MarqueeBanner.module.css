@@ -1,0 +1,23 @@
+.marquee {
+  overflow: hidden;
+  background: var(--primary-soft);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 1rem 0;
+  white-space: nowrap;
+}
+
+.track {
+  display: inline-flex;
+  animation: marquee 30s linear infinite;
+}
+
+.item {
+  display: inline-block;
+  padding: 0 3rem;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--gold);
+  font-weight: 500;
+}

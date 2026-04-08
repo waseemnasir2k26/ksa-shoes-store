@@ -3,10 +3,12 @@ import React, { useState } from 'react';
 import ProductCard from './ProductCard';
 import SidebarFilter from './SidebarFilter';
 import { products } from '@/data/products';
+import { useLanguage } from '@/context/LanguageContext';
 import styles from './ProductGrid.module.css';
 
 export default function ProductGrid() {
   const [activeFilters, setActiveFilters] = useState({});
+  const { t } = useLanguage();
 
   return (
     <div className={`container ${styles.layout}`}>
@@ -15,11 +17,11 @@ export default function ProductGrid() {
       </aside>
       <main className={styles.main}>
         <div className={styles.toolbar}>
-          <span className={styles.resultCount}>Showing {products.length} products</span>
+          <span className={styles.resultCount}>{t('showing')} {products.length} {t('products')}</span>
           <select className={styles.sortSelect}>
-            <option>Featured</option>
-            <option>Price: Low to High</option>
-            <option>Price: High to Low</option>
+            <option>{t('featured')}</option>
+            <option>{t('priceLowHigh')}</option>
+            <option>{t('priceHighLow')}</option>
           </select>
         </div>
         

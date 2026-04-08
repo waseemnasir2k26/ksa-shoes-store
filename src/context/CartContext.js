@@ -8,6 +8,11 @@ export function CartProvider({ children }) {
   const [cartItems, setCartItems] = useState([]);
   const [toastMessage, setToastMessage] = useState(null);
 
+  const showToast = (msg) => {
+    setToastMessage(msg);
+    setTimeout(() => setToastMessage(null), 3000);
+  };
+
   const addToCart = (product) => {
     setCartItems(prev => {
       const existing = prev.find(item => item.id === product.id);
@@ -16,10 +21,7 @@ export function CartProvider({ children }) {
       }
       return [...prev, { ...product, quantity: 1 }];
     });
-    setToastMessage(`${product.name} added to cart`);
-    
-    // Auto clear toast
-    setTimeout(() => setToastMessage(null), 3000);
+    showToast(`${product.name} added to cart`);
     setCartOpen(true);
   };
 
@@ -30,7 +32,10 @@ export function CartProvider({ children }) {
   const toggleCart = () => setCartOpen(!cartOpen);
 
   return (
-    <CartContext.Provider value={{ cartOpen, toggleCart, cartItems, addToCart, removeFromCart, toastMessage }}>
+    <CartContext.Provider value={{ 
+      cartOpen, toggleCart, cartItems, addToCart, removeFromCart, 
+      toastMessage, setToastMessage: showToast 
+    }}>
       {children}
     </CartContext.Provider>
   );

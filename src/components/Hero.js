@@ -1,34 +1,55 @@
+"use client";
 import React from 'react';
 import Link from 'next/link';
+import { useLanguage } from '@/context/LanguageContext';
 import styles from './Hero.module.css';
 
 export default function Hero() {
+  const { t } = useLanguage();
+  
   return (
     <section className={styles.hero}>
       <div className={styles.heroImageContainer}>
-        {/* We are using the generated hero image */}
         <img 
-          src="/assets/hero_banner.png" 
-          alt="Premium Leather Arabic Sandal on Marble" 
+          src="/assets/hero_dark.png" 
+          alt="Premium Leather Arabic Sandal — Luxury Collection" 
           className={styles.heroImage}
         />
         <div className={styles.heroOverlay}></div>
       </div>
       
       <div className={`container ${styles.heroContent}`}>
-        <h1 className={styles.heroTitle}>Elegance in Every <br/><span className={styles.heroHighlight}>Footstep</span></h1>
+        <div className={styles.heroLabel}>
+          <span className={styles.heroLabelLine}></span>
+          <span>{t('heroLabel')}</span>
+          <span className={styles.heroLabelLine}></span>
+        </div>
+        
+        <h1 className={styles.heroTitle}>
+          {t('heroTitle1')} <br/>
+          <span className={styles.heroHighlight}>{t('heroTitle2')}</span>
+        </h1>
+        
         <p className={styles.heroSubtitle}>
-          Discover our new collection of premium handcrafted Arabic sandals. Designed for the modern gentleman, rooted in timeless tradition.
+          {t('heroDesc')}
         </p>
+        
         <div className={styles.heroActions}>
           <Link href="/sandals" className={styles.btnPrimary}>
-            Shop Collection
+            {t('shopCollection')}
           </Link>
           <Link href="/about" className={styles.btnSecondary}>
-            Our Heritage
+            {t('ourHeritage')}
           </Link>
         </div>
       </div>
+
+      <div className={styles.scrollIndicator}>
+        <span className={styles.scrollText}>{t('scroll')}</span>
+        <span className={styles.scrollLine}></span>
+      </div>
+
+      <div className={styles.heroDecor}></div>
     </section>
   );
 }

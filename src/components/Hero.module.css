@@ -1,19 +1,24 @@
+/* ═══════════════════════════════════════════════════════════ */
+/*  Hero — Dark Luxury Cinematic                             */
+/* ═══════════════════════════════════════════════════════════ */
+
 .hero {
   position: relative;
-  height: calc(100vh - 80px); /* Minus navbar */
-  min-height: 600px;
+  height: 100vh;
+  min-height: 700px;
   display: flex;
   align-items: center;
   overflow: hidden;
 }
 
+/* ─── Background Image ───────────────────────────────────── */
 .heroImageContainer {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: -1;
+  z-index: 0;
 }
 
 .heroImage {
@@ -21,121 +26,209 @@
   height: 100%;
   object-fit: cover;
   object-position: center;
-  /* Slight scale animation on load would be nice */
-  animation: subtleZoom 10s infinite alternate cubic-bezier(0.4, 0, 0.2, 1);
+  animation: heroZoom 20s infinite alternate var(--ease-in-out);
+  filter: brightness(0.5);
 }
 
-@keyframes subtleZoom {
+@keyframes heroZoom {
   0% { transform: scale(1); }
-  100% { transform: scale(1.05); }
+  100% { transform: scale(1.1); }
 }
 
+/* ─── Overlays ───────────────────────────────────────────── */
 .heroOverlay {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(to right, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.4) 50%, rgba(255, 255, 255, 0) 100%);
+  background: 
+    linear-gradient(135deg, rgba(10, 10, 10, 0.92) 0%, rgba(10, 10, 10, 0.6) 50%, rgba(10, 10, 10, 0.3) 100%),
+    radial-gradient(ellipse at 20% 80%, rgba(201, 169, 110, 0.06) 0%, transparent 60%);
+  z-index: 1;
 }
 
+/* Decorative gold line */
+.heroDecor {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  z-index: 3;
+  opacity: 0.4;
+}
+
+/* ─── Content ────────────────────────────────────────────── */
 .heroContent {
   position: relative;
-  z-index: 1;
-  max-width: 600px;
-  margin-left: 0; /* Align left */
-  padding-top: 2rem;
+  z-index: 2;
+  max-width: 650px;
+  padding: 0 2.5rem;
+  animation: fadeInUp 1s var(--ease-out) 0.3s both;
+}
+
+.heroLabel {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  color: var(--gold);
+  margin-bottom: 2rem;
+  font-weight: 500;
+}
+
+.heroLabelLine {
+  width: 40px;
+  height: 1px;
+  background: var(--gold);
 }
 
 .heroTitle {
-  font-family: var(--font-tajawal), var(--font-inter);
-  font-size: 4rem;
-  line-height: 1.1;
-  font-weight: 700;
-  color: var(--primary);
+  font-family: var(--font-display);
+  font-size: 4.5rem;
+  line-height: 1.05;
+  font-weight: 600;
+  color: var(--text-primary);
   margin-bottom: 1.5rem;
   letter-spacing: -0.02em;
 }
 
 .heroHighlight {
-  color: var(--accent);
+  background: var(--gold-text);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
   font-style: italic;
-  font-family: var(--font-inter); /* Using inter for the english italic touch */
 }
 
 .heroSubtitle {
-  font-size: 1.125rem;
-  line-height: 1.6;
-  color: var(--text-muted);
-  margin-bottom: 2.5rem;
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  margin-bottom: 3rem;
   max-width: 480px;
+  font-weight: 300;
 }
 
+/* ─── Buttons ────────────────────────────────────────────── */
 .heroActions {
   display: flex;
-  gap: 1rem;
+  gap: 1.25rem;
+  align-items: center;
 }
 
 .btnPrimary, .btnSecondary {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 1rem 2rem;
-  font-size: 0.875rem;
+  gap: 0.5rem;
+  padding: 1rem 2.25rem;
+  font-size: 0.8rem;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  border-radius: var(--radius-sm);
+  letter-spacing: 0.12em;
+  border-radius: var(--radius-xs);
   transition: var(--transition);
+  position: relative;
+  overflow: hidden;
 }
 
 .btnPrimary {
-  background-color: var(--primary);
-  color: white;
+  background: var(--gold-shimmer);
+  background-size: 200% auto;
+  color: var(--primary);
 }
 
 .btnPrimary:hover {
-  background-color: var(--accent);
+  background-position: right center;
   transform: translateY(-2px);
-  box-shadow: var(--shadow-md);
+  box-shadow: var(--shadow-gold-lg);
 }
 
 .btnSecondary {
   background-color: transparent;
-  color: var(--primary);
-  border: 1px solid var(--primary);
+  color: var(--gold);
+  border: 1px solid var(--border-hover);
 }
 
 .btnSecondary:hover {
-  background-color: rgba(0,0,0,0.05);
+  border-color: var(--gold);
+  background: rgba(201, 169, 110, 0.08);
   transform: translateY(-2px);
 }
 
+/* ─── Scroll Indicator ───────────────────────────────────── */
+.scrollIndicator {
+  position: absolute;
+  bottom: 3rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  animation: float 3s infinite var(--ease-in-out);
+}
+
+.scrollLine {
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(to bottom, var(--gold), transparent);
+}
+
+.scrollText {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--text-muted);
+  writing-mode: vertical-lr;
+}
+
+/* ─── Mobile ─────────────────────────────────────────────── */
 @media (max-width: 768px) {
-  .heroOverlay {
-    background: linear-gradient(to top, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.7) 100%);
+  .hero {
+    min-height: 100vh;
   }
-  
+
+  .heroOverlay {
+    background: 
+      linear-gradient(180deg, rgba(10, 10, 10, 0.5) 0%, rgba(10, 10, 10, 0.85) 60%, rgba(10, 10, 10, 0.98) 100%),
+      radial-gradient(ellipse at 50% 100%, rgba(201, 169, 110, 0.08) 0%, transparent 60%);
+  }
+
   .heroContent {
     max-width: 100%;
     text-align: center;
-    margin: 0 auto;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 10rem;
+    padding: 0 1.5rem;
+    margin-top: 5rem;
   }
-  
+
   .heroTitle {
-    font-size: 3rem;
+    font-size: 2.8rem;
   }
-  
+
+  .heroSubtitle {
+    font-size: 1rem;
+  }
+
   .heroActions {
     flex-direction: column;
     width: 100%;
   }
-  
+
   .btnPrimary, .btnSecondary {
     width: 100%;
+  }
+
+  .scrollIndicator {
+    display: none;
   }
 }

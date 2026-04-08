@@ -1,0 +1,72 @@
+.section {
+  padding: 5rem 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: var(--primary-soft);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+}
+
+.badge {
+  text-align: center;
+  padding: 2rem 1rem;
+  border-radius: var(--radius-md);
+  transition: var(--transition);
+}
+
+.badge:hover {
+  background: rgba(201, 169, 110, 0.03);
+}
+
+.icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border);
+  color: var(--gold);
+  margin-bottom: 1.25rem;
+  transition: var(--transition);
+}
+
+.badge:hover .icon {
+  border-color: var(--border-hover);
+  box-shadow: var(--shadow-gold);
+  background: rgba(201, 169, 110, 0.05);
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.desc {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  .badge {
+    padding: 1.5rem 0.75rem;
+  }
+}

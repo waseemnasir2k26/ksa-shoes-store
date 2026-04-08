@@ -1,8 +1,12 @@
+/* ═══════════════════════════════════════════════════════════ */
+/*  Product Grid — Dark Layout                               */
+/* ═══════════════════════════════════════════════════════════ */
+
 .layout {
   display: grid;
-  grid-template-columns: 280px 1fr;
+  grid-template-columns: 260px 1fr;
   gap: 3rem;
-  padding: 4rem 2rem;
+  padding: 0 2rem;
 }
 
 .toolbar {
@@ -15,20 +19,26 @@
 }
 
 .resultCount {
-  color: var(--text-muted);
-  font-size: 0.95rem;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  letter-spacing: 0.03em;
 }
 
 .sortSelect {
-  padding: 0.5rem 1rem;
+  padding: 0.6rem 1.25rem;
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
-  background-color: var(--bg-card);
+  background-color: var(--primary-card);
+  color: var(--text-primary);
   outline: none;
+  font-size: 0.85rem;
+  transition: var(--transition-fast);
+  cursor: pointer;
 }
 
 .sortSelect:focus {
-  border-color: var(--primary);
+  border-color: var(--gold);
+  box-shadow: 0 0 0 2px rgba(201, 169, 110, 0.1);
 }
 
 .grid {
@@ -39,7 +49,7 @@
 
 @media (max-width: 1024px) {
   .layout {
-    grid-template-columns: 240px 1fr;
+    grid-template-columns: 220px 1fr;
     gap: 2rem;
   }
 }
@@ -50,13 +60,13 @@
     flex-direction: column;
     padding-top: 2rem;
   }
-  
+
   .sidebar {
-    display: none; /* In a real app we'd make this a drawer */
+    display: none;
   }
-  
+
   .grid {
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 1.25rem;
   }
 }

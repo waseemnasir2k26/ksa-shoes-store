@@ -1,53 +1,124 @@
+/* ═══════════════════════════════════════════════════════════ */
+/*  Product Card — Dark Luxury with Hover Effects            */
+/* ═══════════════════════════════════════════════════════════ */
+
 .card {
   display: flex;
   flex-direction: column;
+  animation: fadeInUp 0.6s var(--ease-out) both;
 }
 
+.card:nth-child(1) { animation-delay: 0.1s; }
+.card:nth-child(2) { animation-delay: 0.2s; }
+.card:nth-child(3) { animation-delay: 0.3s; }
+.card:nth-child(4) { animation-delay: 0.4s; }
+
+/* ─── Image Container ────────────────────────────────────── */
 .imageWrapper {
   position: relative;
-  background-color: #f8f8f8;
-  border-radius: var(--radius-sm);
+  background: var(--primary-card);
+  border-radius: var(--radius-md);
   overflow: hidden;
   aspect-ratio: 4/5;
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 1.25rem;
+  border: 1px solid var(--border);
+  transition: var(--transition);
+}
+
+.imageWrapper::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 50% 120%, rgba(201, 169, 110, 0.06) 0%, transparent 70%);
+  opacity: 0;
+  transition: var(--transition);
+  z-index: 1;
+}
+
+.imageWrapper:hover {
+  border-color: var(--border-hover);
+  box-shadow: var(--shadow-gold);
+}
+
+.imageWrapper:hover::before {
+  opacity: 1;
 }
 
 .image {
-  width: 90%;
-  height: 90%;
-  object-fit: cover;
-  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-  mix-blend-mode: multiply; /* Helps blend white bg images to the slight grey container */
+  width: 85%;
+  height: 85%;
+  object-fit: contain;
+  transition: transform 0.7s var(--ease-out);
+  position: relative;
+  z-index: 0;
 }
 
 .imageWrapper:hover .image {
-  transform: scale(1.08);
+  transform: scale(1.05) translateY(-5px);
 }
 
-.badgeOut {
+/* ─── Badge ──────────────────────────────────────────────── */
+.badge {
   position: absolute;
   top: 1rem;
   left: 1rem;
-  background-color: var(--primary);
-  color: white;
-  font-size: 0.75rem;
-  padding: 0.25rem 0.75rem;
+  font-size: 0.65rem;
+  padding: 0.3rem 0.85rem;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.08em;
+  border-radius: var(--radius-full);
+  backdrop-filter: blur(10px);
+  z-index: 2;
+  border: 1px solid var(--border);
 }
 
+.badgeOut {
+  background: rgba(100, 100, 100, 0.3);
+  color: var(--text-secondary);
+}
+
+.badgeNew {
+  background: rgba(201, 169, 110, 0.15);
+  color: var(--gold);
+  border-color: var(--border-hover);
+}
+
+.badgeBest {
+  background: rgba(201, 169, 110, 0.25);
+  color: var(--gold-light);
+  border-color: var(--gold-dark);
+}
+
+.badgeLimited {
+  background: rgba(180, 50, 50, 0.2);
+  color: #e8a0a0;
+  border-color: rgba(180, 50, 50, 0.3);
+}
+
+.originalPrice {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  text-decoration: line-through;
+  font-weight: 400;
+}
+
+/* ─── Quick Add ──────────────────────────────────────────── */
 .quickAdd {
   position: absolute;
-  bottom: -50px;
+  bottom: -60px;
   left: 0;
   width: 100%;
   padding: 1rem;
   transition: var(--transition);
   opacity: 0;
+  z-index: 3;
 }
 
 .imageWrapper:hover .quickAdd {
@@ -57,63 +128,86 @@
 
 .quickAddBtn {
   width: 100%;
-  background-color: var(--primary);
-  color: white;
-  padding: 0.75rem;
+  background: var(--gold-shimmer);
+  background-size: 200% auto;
+  color: var(--primary);
+  padding: 0.85rem;
   border-radius: var(--radius-sm);
-  font-weight: 600;
-  font-size: 0.85rem;
+  font-weight: 700;
+  font-size: 0.8rem;
   text-transform: uppercase;
+  letter-spacing: 0.08em;
+  transition: var(--transition);
 }
 
 .quickAddBtn:hover {
-  background-color: var(--accent);
+  background-position: right center;
+  box-shadow: var(--shadow-gold);
 }
 
+/* ─── Product Info ───────────────────────────────────────── */
 .info {
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
+  gap: 0.35rem;
+  padding: 0 0.25rem;
 }
 
 .brand {
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   text-transform: uppercase;
-  color: var(--text-muted);
-  letter-spacing: 0.05em;
+  color: var(--gold-dark);
+  letter-spacing: 0.1em;
+  font-weight: 500;
 }
 
 .name {
   font-size: 1rem;
-  font-weight: 600;
-  color: var(--primary);
+  font-weight: 500;
+  color: var(--text-primary);
   line-height: 1.4;
-  transition: color 0.2s ease;
+  transition: var(--transition-fast);
+  font-family: var(--font-display);
 }
 
 .name:hover {
-  color: var(--accent);
+  color: var(--gold);
 }
 
 .priceRow {
-  margin-top: 0.25rem;
+  margin-top: 0.35rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .price {
-  font-size: 1.1rem;
+  font-size: 1.15rem;
   font-weight: 700;
+  background: var(--gold-text);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
+/* ─── Color Swatches ─────────────────────────────────────── */
 .colors {
   display: flex;
   gap: 0.5rem;
-  margin-top: 0.5rem;
+  margin-top: 0.75rem;
 }
 
 .colorSwatch {
   width: 16px;
   height: 16px;
   border-radius: 50%;
-  border: 1px solid var(--border);
+  border: 2px solid var(--primary-card);
+  outline: 1px solid var(--border);
   cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.colorSwatch:hover {
+  outline-color: var(--gold);
+  transform: scale(1.15);
 }

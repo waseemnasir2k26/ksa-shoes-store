@@ -1,48 +1,106 @@
-/* Custom Premium Vanilla CSS */
+/* ═══════════════════════════════════════════════════════════ */
+/*  AL-ZAYTOUN — Premium Dark Luxury Design System           */
+/* ═══════════════════════════════════════════════════════════ */
 
 :root {
-  --primary: #111111;
-  --secondary: #f4f4f5;
-  --accent: #bfa15f; /* Elegant gold tone */
-  --accent-hover: #a88a4e;
-  --text-main: #000000;
-  --text-muted: #666666;
-  --bg-page: #fafafa; /* Slight off-white for softer contrast */
-  --bg-card: #ffffff;
-  --border: #e6e6e6;
+  /* Core Palette — Deep Dark Luxury */
+  --primary: #0a0a0a;
+  --primary-soft: #141414;
+  --primary-card: #1a1a1a;
+  --primary-elevated: #222222;
+
+  /* Gold Accent Spectrum */
+  --gold: #c9a96e;
+  --gold-light: #e0c992;
+  --gold-dark: #a8893f;
+  --gold-shimmer: linear-gradient(135deg, #c9a96e 0%, #e0c992 50%, #c9a96e 100%);
+  --gold-text: linear-gradient(135deg, #c9a96e 0%, #f0dba8 40%, #c9a96e 80%, #e0c992 100%);
+
+  /* Text */
+  --text-primary: #f5f0e8;
+  --text-secondary: #9a9590;
+  --text-muted: #605c58;
+  --text-accent: var(--gold);
+
+  /* Surfaces */
+  --bg-page: #0a0a0a;
+  --bg-card: #141414;
+  --bg-card-hover: #1c1c1c;
+  --bg-glass: rgba(20, 20, 20, 0.7);
+
+  /* Borders */
+  --border: rgba(201, 169, 110, 0.12);
+  --border-hover: rgba(201, 169, 110, 0.3);
+  --border-strong: rgba(201, 169, 110, 0.5);
+
+  /* Radius */
+  --radius-xs: 2px;
   --radius-sm: 4px;
   --radius-md: 8px;
   --radius-lg: 16px;
+  --radius-xl: 24px;
   --radius-full: 9999px;
-  --shadow-sm: 0 2px 4px rgba(0,0,0,0.02);
-  --shadow-md: 0 8px 16px rgba(0,0,0,0.04);
-  --shadow-hover: 0 16px 32px rgba(0,0,0,0.08);
-  --transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Shadows */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.5);
+  --shadow-gold: 0 4px 20px rgba(201, 169, 110, 0.15);
+  --shadow-gold-lg: 0 8px 40px rgba(201, 169, 110, 0.2);
+
+  /* Transitions */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --transition-fast: all 0.2s var(--ease-out);
+  --transition: all 0.4s var(--ease-out);
+  --transition-slow: all 0.6s var(--ease-out);
+
+  /* Spacing */
+  --section-gap: 8rem;
+  --container-max: 1440px;
+
+  /* Font */
+  --font-display: var(--font-playfair), var(--font-tajawal), serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  /* Minimal dark mode support, but typical premium fashion sites are usually light themed.
-     We will keep it predominately light but offer safe dark fallbacks if necessary.
-   */
-}
-
-* {
+/* ─── Reset ──────────────────────────────────────────────── */
+*, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background-color: var(--bg-page);
-  color: var(--text-main);
+  color: var(--text-primary);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--primary);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--gold-dark);
+  border-radius: var(--radius-full);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gold);
 }
 
 a {
   color: inherit;
   text-decoration: none;
-  transition: var(--transition);
+  transition: var(--transition-fast);
 }
 
 button {
@@ -67,14 +125,109 @@ ul {
   list-style: none;
 }
 
+/* ─── Container ──────────────────────────────────────────── */
 .container {
-  max-width: 1440px;
+  max-width: var(--container-max);
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 2.5rem;
 }
 
 @media (max-width: 768px) {
   .container {
     padding: 0 1.25rem;
   }
+}
+
+/* ─── Gold Gradient Text Utility ─────────────────────────── */
+.gold-text {
+  background: var(--gold-text);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─── Section Title ──────────────────────────────────────── */
+.section-title {
+  font-family: var(--font-display);
+  font-size: 3rem;
+  font-weight: 600;
+  text-align: center;
+  letter-spacing: -0.01em;
+  margin-bottom: 1rem;
+  background: var(--gold-text);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.section-subtitle {
+  text-align: center;
+  color: var(--text-secondary);
+  font-size: 1.05rem;
+  max-width: 500px;
+  margin: 0 auto 4rem;
+  line-height: 1.6;
+}
+
+/* ─── Divider ────────────────────────────────────────────── */
+.gold-divider {
+  width: 60px;
+  height: 2px;
+  background: var(--gold-shimmer);
+  margin: 0 auto 1.5rem;
+  border-radius: var(--radius-full);
+}
+
+/* ─── Animations ─────────────────────────────────────────── */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse-gold {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(201, 169, 110, 0.3); }
+  50% { box-shadow: 0 0 0 12px rgba(201, 169, 110, 0); }
+}
+
+@keyframes slideInFromRight {
+  from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ─── Selection ──────────────────────────────────────────── */
+::selection {
+  background-color: rgba(201, 169, 110, 0.3);
+  color: var(--text-primary);
 }

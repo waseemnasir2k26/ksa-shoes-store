@@ -1,10 +1,12 @@
 "use client";
 import React from 'react';
 import { useCart } from '@/context/CartContext';
+import { useLanguage } from '@/context/LanguageContext';
 import styles from './CartDrawer.module.css';
 
 export default function CartDrawer() {
   const { cartOpen, toggleCart, cartItems, removeFromCart, toastMessage } = useCart();
+  const { t } = useLanguage();
   
   const subtotal = cartItems.reduce((acc, item) => acc + (item.price * item.quantity), 0);
 
@@ -24,13 +26,13 @@ export default function CartDrawer() {
       {/* Sliding Drawer */}
       <div className={`${styles.drawer} ${cartOpen ? styles.drawerOpen : ''}`}>
         <div className={styles.header}>
-          <h2>Your Cart ({cartItems.length})</h2>
+          <h2>{t('yourCart')} ({cartItems.length})</h2>
           <button className={styles.closeBtn} onClick={toggleCart}>✕</button>
         </div>
         
         <div className={styles.body}>
           {cartItems.length === 0 ? (
-            <p className={styles.empty}>Your cart is currently empty.</p>
+            <p className={styles.empty}>{t('emptyCart')}</p>
           ) : (
             <ul className={styles.itemList}>
               {cartItems.map(item => (
@@ -40,11 +42,11 @@ export default function CartDrawer() {
                     <h4>{item.name}</h4>
                     <p className={styles.itemMeta}>{item.color} | EU {item.sizes[0]}</p>
                     <div className={styles.itemPriceRow}>
-                      <span className={styles.itemQty}>Qty: {item.quantity}</span>
+                      <span className={styles.itemQty}>{t('qty')}: {item.quantity}</span>
                       <span className={styles.itemPrice}>{item.currency} {item.price * item.quantity}</span>
                     </div>
                   </div>
-                  <button className={styles.removeBtn} onClick={() => removeFromCart(item.id)}>Remove</button>
+                  <button className={styles.removeBtn} onClick={() => removeFromCart(item.id)}>{t('remove')}</button>
                 </li>
               ))}
             </ul>
@@ -54,11 +56,11 @@ export default function CartDrawer() {
         {cartItems.length > 0 && (
           <div className={styles.footer}>
             <div className={styles.subtotal}>
-              <span>Subtotal</span>
+              <span>{t('subtotal')}</span>
               <span>SAR {subtotal}</span>
             </div>
-            <p className={styles.taxNote}>Taxes and shipping calculated at checkout.</p>
-            <button className={styles.checkoutBtn} onClick={() => alert("Checkout flow mock")}>Proceed to Checkout</button>
+            <p className={styles.taxNote}>{t('taxNote')}</p>
+            <button className={styles.checkoutBtn} onClick={() => alert("Checkout flow mock")}>{t('checkout')}</button>
           </div>
         )}
       </div>

@@ -1,10 +1,23 @@
+/* ═══════════════════════════════════════════════════════════ */
+/*  Navbar — Glassmorphism Dark Luxury                       */
+/* ═══════════════════════════════════════════════════════════ */
+
 .header {
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
   z-index: 100;
-  background-color: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(8px);
+  background: rgba(10, 10, 10, 0.6);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
   border-bottom: 1px solid var(--border);
+  transition: var(--transition);
+}
+
+.headerScrolled {
+  background: rgba(10, 10, 10, 0.92);
+  border-bottom-color: var(--border-hover);
 }
 
 .navbar {
@@ -14,19 +27,42 @@
   height: 80px;
 }
 
+/* ─── Logo ───────────────────────────────────────────────── */
 .logo {
   flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
 }
 
 .logoText {
-  font-family: var(--font-tajawal), var(--font-inter);
-  font-size: 1.5rem;
+  font-family: var(--font-display);
+  font-size: 1.6rem;
   font-weight: 700;
-  letter-spacing: 0.05em;
-  color: var(--primary);
+  letter-spacing: 0.04em;
+  background: var(--gold-text);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
   text-transform: uppercase;
 }
 
+.logoDivider {
+  width: 1px;
+  height: 24px;
+  background: var(--border-hover);
+  margin: 0 0.5rem;
+}
+
+.logoSub {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--text-secondary);
+  font-weight: 400;
+}
+
+/* ─── Navigation ─────────────────────────────────────────── */
 .nav {
   flex: 1 1 auto;
   display: flex;
@@ -39,77 +75,211 @@
 }
 
 .navLink, .navLinkActive {
-  font-size: 0.875rem;
+  font-size: 0.8rem;
   font-weight: 500;
-  color: var(--text-muted);
+  color: var(--text-secondary);
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.12em;
   position: relative;
   padding: 0.5rem 0;
+  transition: var(--transition-fast);
 }
 
 .navLink:hover {
-  color: var(--primary);
+  color: var(--gold);
 }
 
 .navLinkActive {
-  color: var(--primary);
+  color: var(--gold);
 }
 
 .navLinkActive::after {
   content: '';
   position: absolute;
-  bottom: 0;
+  bottom: -2px;
   left: 0;
   width: 100%;
-  height: 2px;
-  background-color: var(--accent);
+  height: 1px;
+  background: var(--gold-shimmer);
 }
 
 .navLink::after {
   content: '';
   position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 0%;
-  height: 2px;
-  background-color: var(--accent);
+  bottom: -2px;
+  left: 50%;
+  width: 0;
+  height: 1px;
+  background: var(--gold-shimmer);
   transition: var(--transition);
+  transform: translateX(-50%);
 }
 
 .navLink:hover::after {
   width: 100%;
 }
 
+/* ─── Actions ────────────────────────────────────────────── */
 .actions {
   flex: 0 0 auto;
   display: flex;
   align-items: center;
-  gap: 1.5rem;
+  gap: 1rem;
 }
 
 .iconBtn {
-  color: var(--primary);
+  color: var(--text-secondary);
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 0.5rem;
+  border-radius: var(--radius-full);
+  transition: var(--transition-fast);
+  position: relative;
 }
 
 .iconBtn:hover {
-  color: var(--accent);
-  transform: translateY(-2px);
+  color: var(--gold);
+  background: rgba(201, 169, 110, 0.08);
+  transform: translateY(-1px);
+}
+
+/* ─── Login Button ───────────────────────────────────────── */
+.loginBtn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-secondary);
+  padding: 0.4rem 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  font-size: 0.8rem;
+  font-weight: 500;
+  transition: var(--transition-fast);
+}
+
+.loginBtn:hover {
+  color: var(--gold);
+  border-color: var(--border-hover);
+  background: rgba(201, 169, 110, 0.05);
+}
+
+.loginText {
+  letter-spacing: 0.05em;
+}
+
+/* ─── User Menu ──────────────────────────────────────────── */
+.userMenu {
+  position: relative;
+}
+
+.avatarBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: var(--radius-full);
+  background: var(--gold-shimmer);
+  background-size: 200% auto;
+  color: var(--primary);
+  font-weight: 800;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition-fast);
+}
+
+.avatarBtn:hover .avatar {
+  background-position: right center;
+  box-shadow: var(--shadow-gold);
+}
+
+.userDropdown {
+  position: absolute;
+  top: calc(100% + 12px);
+  right: 0;
+  width: 240px;
+  background: var(--primary-soft);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 0.5rem;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px);
+  transition: var(--transition-fast);
+  z-index: 200;
+}
+
+.userMenu:hover .userDropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.userInfo {
+  padding: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.userName {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.userEmail {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.dropdownDivider {
+  height: 1px;
+  background: var(--border);
+  margin: 0.25rem 0;
+}
+
+.dropdownItem {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 0.65rem 0.75rem;
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  border-radius: var(--radius-sm);
+  transition: var(--transition-fast);
+  text-align: left;
+}
+
+.dropdownItem:hover {
+  background: rgba(201, 169, 110, 0.05);
+  color: var(--gold);
 }
 
 .langBtn {
   font-family: var(--font-tajawal);
   font-weight: 500;
-  font-size: 0.95rem;
-  color: var(--text-muted);
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  padding: 0.35rem 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  transition: var(--transition-fast);
 }
 
 .langBtn:hover {
-  color: var(--primary);
+  color: var(--gold);
+  border-color: var(--border-hover);
+  background: rgba(201, 169, 110, 0.05);
 }
 
 .cartIconWrapper {
@@ -118,64 +288,86 @@
 
 .cartBadge {
   position: absolute;
-  top: -8px;
-  right: -8px;
-  background-color: var(--accent);
-  color: white;
-  font-size: 0.65rem;
-  font-weight: bold;
+  top: -6px;
+  right: -6px;
+  background: var(--gold-shimmer);
+  background-size: 200% auto;
+  color: var(--primary);
+  font-size: 0.6rem;
+  font-weight: 800;
   height: 18px;
   width: 18px;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
+  animation: pulse-gold 2s infinite;
 }
 
+/* ─── Hamburger ──────────────────────────────────────────── */
 .hamburger {
   display: none;
   flex-direction: column;
   justify-content: space-around;
   width: 24px;
-  height: 24px;
+  height: 20px;
   z-index: 10;
+  padding: 0;
 }
 
 .bar {
   width: 100%;
-  height: 2px;
-  background-color: var(--primary);
+  height: 1.5px;
+  background: var(--gold);
   transition: var(--transition);
+  transform-origin: center;
 }
 
+/* ─── Mobile ─────────────────────────────────────────────── */
 @media (max-width: 768px) {
   .hamburger {
     display: flex;
   }
-  
+
   .nav {
     position: fixed;
     top: 80px;
     left: -100%;
     width: 100%;
     height: calc(100vh - 80px);
-    background-color: var(--bg-card);
+    background: rgba(10, 10, 10, 0.98);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
     transition: var(--transition);
     justify-content: flex-start;
-    padding: 2rem;
+    padding: 3rem 2rem;
   }
-  
+
   .navOpen {
     left: 0;
   }
-  
+
   .navList {
     flex-direction: column;
     width: 100%;
-    gap: 1.5rem;
+    gap: 2rem;
   }
-  
+
+  .navLink, .navLinkActive {
+    font-size: 1.1rem;
+    letter-spacing: 0.15em;
+  }
+
   .langBtn {
     display: none;
+  }
+
+  .loginText {
+    display: none;
+  }
+
+  .loginBtn {
+    border: none;
+    padding: 0.5rem;
   }
 }
