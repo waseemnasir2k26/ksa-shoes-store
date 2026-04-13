@@ -292,12 +292,65 @@
   transform: scale(1.15);
 }
 
+/* ─── Save Badge ────────────────────────────────────────── */
+.saveBadge {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 0.7rem;
+  padding: 0.3rem 0.65rem;
+  font-weight: 700;
+  border-radius: var(--radius-full);
+  background: rgba(180, 50, 50, 0.25);
+  color: #f0a0a0;
+  border: 1px solid rgba(180, 50, 50, 0.3);
+  backdrop-filter: blur(10px);
+  z-index: 2;
+}
+
 /* ─── Product Info ───────────────────────────────────────── */
 .info {
   display: flex;
   flex-direction: column;
   gap: 0.35rem;
   padding: 0 0.25rem;
+}
+
+/* Rating row */
+.ratingRow {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: 0.15rem;
+}
+
+.starsSmall {
+  display: flex;
+  align-items: center;
+  gap: 1px;
+}
+
+.ratingText {
+  font-size: 0.75rem;
+  color: var(--gold);
+  font-weight: 600;
+}
+
+.reviewCount {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+
+/* Tamara BNPL */
+.tamaraRow {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  margin-top: 0.1rem;
+}
+
+.tamaraBrand {
+  color: var(--gold);
+  font-weight: 600;
 }
 
 .brand {
