@@ -1,79 +1,118 @@
 "use client";
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useLanguage } from '@/context/LanguageContext';
 import styles from './Hero.module.css';
 
 export default function Hero() {
   const { t, lang } = useLanguage();
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setVisible(true), 100);
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <section className={styles.hero}>
-      <div className={styles.heroImageContainer}>
-        <img
-          src="/assets/hero_dark.png"
-          alt="Premium Leather Arabic Sandal — Luxury Collection"
-          className={styles.heroImage}
-        />
-        <div className={styles.heroOverlay}></div>
+      {/* Background layers */}
+      <div className={styles.bgBase} />
+      <div className={styles.bgOrb1} />
+      <div className={styles.bgOrb2} />
+      <div className={styles.bgGrid} />
+
+      <div className={`container ${styles.heroInner}`}>
+        {/* ── Left: Content ── */}
+        <div className={`${styles.content} ${visible ? styles.contentVisible : ''}`}>
+          <div className={styles.eyebrow}>
+            <span className={styles.eyebrowLine} />
+            <span>{t('heroLabel')}</span>
+          </div>
+
+          <h1 className={styles.headline}>
+            <span className={styles.headlineRow}>
+              {lang === 'ar' ? 'صُنعت' : 'Crafted for'}
+            </span>
+            <span className={`${styles.headlineRow} ${styles.headlineGold}`}>
+              {lang === 'ar' ? 'للرجل العصري' : 'the Modern'}
+            </span>
+            <span className={styles.headlineRow}>
+              {lang === 'ar' ? 'بأيدٍ سعودية' : 'Gentleman.'}
+            </span>
+          </h1>
+
+          <p className={styles.subtitle}>
+            {lang === 'ar'
+              ? 'صنادل عربية فاخرة مصنوعة يدوياً من أجود أنواع الجلود الإيطالية. شحن مجاني في جميع أنحاء المملكة.'
+              : 'Premium handcrafted Arabic sandals made from the finest Italian leather. Free shipping across Saudi Arabia.'
+            }
+          </p>
+
+          {/* Social proof */}
+          <div className={styles.proofRow}>
+            <div className={styles.proofStars}>★★★★★</div>
+            <span className={styles.proofText}>
+              {lang === 'ar' ? '٤.٨ من ٢٤٧+ تقييم' : '4.8 from 247+ reviews'}
+            </span>
+            <span className={styles.proofDot}>·</span>
+            <span className={styles.proofText}>
+              {lang === 'ar' ? '+٥٠ ألف عميل' : '50K+ customers'}
+            </span>
+          </div>
+
+          {/* CTA */}
+          <div className={styles.ctaRow}>
+            <Link href="/sandals" className={styles.ctaPrimary}>
+              {lang === 'ar' ? 'تسوق المجموعة' : 'Shop the Collection'}
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </Link>
+            <div className={styles.ctaPrice}>
+              <span className={styles.ctaPriceLabel}>
+                {lang === 'ar' ? 'تبدأ من' : 'Starting from'}
+              </span>
+              <span className={styles.ctaPriceValue}>SAR 260</span>
+            </div>
+          </div>
+
+          {/* Payment strip */}
+          <div className={styles.paymentStrip}>
+            <span>{lang === 'ar' ? 'مدى' : 'Mada'}</span>
+            <span className={styles.paymentDot}>·</span>
+            <span>Apple Pay</span>
+            <span className={styles.paymentDot}>·</span>
+            <span>Tamara</span>
+            <span className={styles.paymentDot}>·</span>
+            <span>{lang === 'ar' ? 'الدفع عند الاستلام' : 'COD'}</span>
+          </div>
+        </div>
+
+        {/* ── Right: Product Showcase ── */}
+        <div className={`${styles.showcase} ${visible ? styles.showcaseVisible : ''}`}>
+          <div className={styles.productGlow} />
+          <div className={styles.productFloat}>
+            <img
+              src="/assets/sandal_black_dark.png"
+              alt="Premium Al-Zaytoun Arabic Sandal"
+              className={styles.productImage}
+            />
+          </div>
+          {/* Price tag */}
+          <div className={styles.priceTag}>
+            <span className={styles.priceTagLabel}>{lang === 'ar' ? 'الأكثر مبيعاً' : 'Best Seller'}</span>
+            <span className={styles.priceTagValue}>SAR 280</span>
+          </div>
+        </div>
       </div>
 
-      <div className={`container ${styles.heroContent}`}>
-        <div className={styles.heroLabel}>
-          <span className={styles.heroLabelLine}></span>
-          <span>{t('heroLabel')}</span>
-          <span className={styles.heroLabelLine}></span>
-        </div>
+      {/* Bottom gold line */}
+      <div className={styles.heroDecor} />
 
-        <h1 className={styles.heroTitle}>
-          {t('heroTitle1')} <br/>
-          <span className={styles.heroHighlight}>{t('heroTitle2')}</span>
-        </h1>
-
-        <p className={styles.heroSubtitle}>
-          {t('heroDesc')}
-        </p>
-
-        <div className={styles.heroActions}>
-          <Link href="/sandals" className={styles.btnPrimary}>
-            {t('shopCollection')}
-          </Link>
-          <Link href="/about" className={styles.btnSecondary}>
-            {t('ourHeritage')}
-          </Link>
-        </div>
-
-        {/* Payment & shipping strip */}
-        <div className={styles.heroStrip}>
-          <div className={styles.heroStripItem}>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-              <rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/>
-            </svg>
-            <span>{lang === 'ar' ? 'شحن مجاني' : 'Free Shipping'}</span>
-          </div>
-          <span className={styles.heroStripDot}>·</span>
-          <div className={styles.heroStripItem}>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-              <rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/>
-            </svg>
-            <span>{lang === 'ar' ? 'قسّط مع تمارا' : 'Split with Tamara'}</span>
-          </div>
-          <span className={styles.heroStripDot}>·</span>
-          <div className={styles.heroStripItem}>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-              <polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/>
-            </svg>
-            <span>{lang === 'ar' ? 'إرجاع مجاني ٣٠ يوم' : '30-Day Free Returns'}</span>
-          </div>
-        </div>
-      </div>
-
+      {/* Scroll indicator */}
       <div className={styles.scrollIndicator}>
-        <span className={styles.scrollText}>{t('scroll')}</span>
-        <span className={styles.scrollLine}></span>
+        <span className={styles.scrollLine} />
       </div>
-
-      <div className={styles.heroDecor}></div>
     </section>
   );
 }
