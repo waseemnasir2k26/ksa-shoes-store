@@ -1,3 +1,11 @@
+# ksa-shoes-store
+
+A Next.js 16 storefront demo for a Saudi Arabian footwear retailer — catalogue, product pages, cart and checkout, running on local demo data.
+
+## Status
+
+Last reviewed: September 2026 · release v2026.09
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
