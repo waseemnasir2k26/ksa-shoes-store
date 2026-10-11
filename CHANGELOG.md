@@ -2,6 +2,13 @@
 
 All notable changes to this project are documented in this file.
 
+## [2026.10] - 2026-10-12
+
+- ksa-shoes-store is a public Next.js 16 + React 19 + Tailwind v4 storefront demo for a Saudi Arabian footwear retailer, running on local demo data.
+- State: last feature commit 2026-04-14 (hero slider, live chat, dev badge); no application code changed this month.
+- Reviewed October 2026: README, tree and history read; the README's external links (Next.js, Vercel docs/font) return 200. Package version bumped for the release.
+- Known gaps: below the project intro the README still carries the stock create-next-app Getting Started / Learn More sections; no LICENSE; no tests or CI.
+
 ## [2026.09] - 2026-09-16
 
 - Maintenance review of ksa-shoes-store — a Next.js 16 (App Router) + React 19 + Tailwind v4 storefront demo for a Saudi Arabian footwear retailer.
